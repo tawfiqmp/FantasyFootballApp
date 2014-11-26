@@ -10,6 +10,9 @@ function app(){
         {url: "./bower_components/jquery/dist/jquery.min.js"},
         {url: "./bower_components/lodash/dist/lodash.min.js"},
         {url: "./bower_components/backbone/backbone.js"},
+        {url: "./bower_components/firebase/firebase.js"},
+        {url: "./bower_components/backfire/dist/backfire.min.js"},
+        {url: "./js/firebase.js"},
         {url: "./dist/style.css"}
     ).then(function(){
         _.templateSettings.interpolate = /{([\s\S]+?)}/g;
