@@ -1,37 +1,29 @@
 (function(window, undefined) {
     "use strict";
 
-var Login = Backbone.Firebase.Model.extend({
-	firebase: new Firebase("https://fantasyfbapp.firebaseio.com/"),
+var nfl = Backbone.Model.extend({
 	defaults: {
 		username: "anonymous",
 		password: "",
 	},
 	validate: function(attrs){
 		var checks = {
-			username: "You forgot to enter a username!"
+			usename: "You forgot to enter a username!"
 			password: "You forgot to enter a password!"
 		}
 
 	}
+})
 
-	var results = _.filter(checks, function(error_message, key)) 
-
-
-
-
-
-
-
+var teams = Backbone.collections.extend({
 
 })
 
-var LoginView = Backbone.view.extend({
+var nflView = Backbone.view.extend({
 	model: document.querySelector:('body')
 
 
 })
-
 
 
 

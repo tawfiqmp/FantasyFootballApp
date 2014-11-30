@@ -14,6 +14,7 @@ function app(){
         {url: "./bower_components/backfire/dist/backfire.min.js"},
         {url: "./js/firebase.js"},
         {url: "./dist/style.css"}
+        
     ).then(function(){
         _.templateSettings.interpolate = /{([\s\S]+?)}/g;
         document.body.style.opacity = 1;
