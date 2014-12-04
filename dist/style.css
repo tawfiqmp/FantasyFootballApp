@@ -39,3 +39,9 @@
 body {
   -webkit-transition: opacity 0.25s ease;
           transition: opacity 0.25s ease; }
+
+.page {
+  display: none; }
+
+.page.active {
+  display: block; }

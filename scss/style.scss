@@ -56,3 +56,9 @@ body {
     transition: opacity .25s ease;
 }
     
+.page {
+    display: none;
+}
+.page.active {
+    display: block; 
+}

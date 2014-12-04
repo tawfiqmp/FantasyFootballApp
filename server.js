@@ -66,6 +66,7 @@ function startServer() {
     // examples:
     // proxify('/yummly/recipes', 'http://api.yummly.com/v1/api/recipes');
     // proxify('/brewery/styles', 'https://api.brewerydb.com/v2/styles');
+    proxify('/ffnerd/service', 'http://www.fantasyfootballnerd.com/service');
     proxify('/nfl/auth/login', "http://api.fantasy.nfl.com/auth/login", {
         appKey: config.nfl.appKey,
         timestamp: function(){ return Math.round((+new Date())/1000) },
