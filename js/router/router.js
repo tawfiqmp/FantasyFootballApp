@@ -64,8 +64,14 @@
     })
 
     app.GameView = Backbone.View.extend({
+        initialize: function() {
+            this.model = new app.Game({
+
+            });
+            this.render();
+        },
         render: function() {
-            getNewSchedule();
+            this.getNewSchedule();
         },
         getNewSchedule: function() {
             var self = this;
@@ -77,16 +83,17 @@
         }
     })
 
-    app.AppView = Backbone.View.extend({
+    var AppView = Backbone.View.extend({
     	el: document.querySelector('body'),
     	initialize: function() {
-    		this.GameViews = new app.Gameview();
+            this.render();
+            this.GameView = new app.GameView();
     	},
         render: function() {
         	var self = this;
-        	collection.forEach(function(e){
+        	// //this.collection.forEach(function(e){
 
-        	})
+        	// })
         }
 
 
@@ -97,12 +104,14 @@
             "*default": "login"
         },
         login: function() {
-            alert(1);
+            //alert(1);
         },
         initialize: function() {
-        	this.appLevelView = new app.AppView();
+        	this.AppView = new app.AppView();
             Backbone.history.start();
         }
     })
+
+    app.AppView = AppView;
 
 })(window, undefined);
