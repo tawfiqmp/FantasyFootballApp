@@ -24,7 +24,7 @@ function app(){
         
         // {url: "./js/views/login.js"},
         
-        {url: "./js/router/router.js"}
+        {url: "./js/router.js"}
     ).then(function(){
         _.templateSettings.interpolate = /{([\s\S]+?)}/g;
         document.body.style.opacity = 1;

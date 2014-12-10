@@ -3,11 +3,12 @@
 
     window.app = window.app || {};
 
-    app.Game = Backbone.Model.extend({
+    app.Player = Backbone.Model.extend({
         defaults: {
             response_format: "json",
             sport: "football",
             version: "3.0",
+            pro_team: "SF",
             //api_key: "480558CD-C3AE-45E2-82F9-32AC35CCD91E",
         },
         urlRoot: function() {
@@ -21,25 +22,34 @@
                 this.get("response_format")
             ].join("");
         },
-        getSchedule: function() {
+        getPlayers: function() {
             var self = this;
             return this.fetch().then(function(model) {
                 console.log(model.body.players);
                 return model.body.players;
             })
+            debugger;
         }
 
     });
 
-    app.Games = Backbone.Collection.extend({
-        model: app.Game
+    app.Players = Backbone.Collection.extend({
+        model: app.Player,
+
+        findPlayer: function(pro_team) {
+                return _(this.models.filter.(function(c){
+                    return _.contains(pro_team, c.pro_team);
+                })));
+                debugger;
+        }
     })
 
-    app.Player = Backbone.Model.extend({
+    app.Game = Backbone.Model.extend({
         defaults: {
-            service_name: "players",
-            format: "json",
-            api_key: "c9vfqacmcegz"
+            response_format: "json",
+            sport: "football",
+            version: "3.0",
+            //api_key: "480558CD-C3AE-45E2-82F9-32AC35CCD91E",
         },
         urlRoot: function() {
             return [
@@ -61,11 +71,13 @@
 
     })
 
-    app.Players = Backbone.Collection.extend({
-        model: app.Player
+    app.Games = Backbone.Collection.extend({
+        model: app.Game
+
     })
 
-    app.GameView = Backbone.View.extend({
+    app.PlayerView = Backbone.View.extend({
+
         initialize: function() {
             this.model = new app.Game({
 
@@ -73,29 +85,47 @@
             this.render();
         },
         render: function() {
-            this.getNewSchedule();
+            this.getnewPlayers();
         },
-        getNewSchedule: function() {
+        getNewPlayers: function() {
             var self = this;
-            this.model.getSchedule().then(function(data) {
-            	console.log(data);
-            	return data;
+            this.model.getPlayers().then(function(data) {
+                console.log(data);
+                return data;
             })
 
         }
     })
 
-    app.AppView = Backbone.View.extend({
-    	el: document.querySelector('body'),
-    	initialize: function() {
-            this.render();
-            this.GameView = new app.GameView();
-    	},
-        render: function() {
-        	var self = this;
-        	// //this.collection.forEach(function(e){
+    app.GameView + Backbone.View.extend({
 
-        	// })
+    })
+
+    app.AppView = Backbone.View.extend({
+        el: document.querySelector('body'),
+        initialize: function() {
+            this.render();
+            this.PlayerView = new app.PlayerView();
+        },
+        events: {
+            "click a.findRoster": function(e) {
+                this.render(e);
+            }
+        },
+        render: function() {
+            var self = this;
+
+            this.collection = new app.Players({
+
+            })
+
+            this.collection.findPlayer().then(function(data) {
+                    console.log(data);
+                    return data;
+                })
+                // //this.collection.forEach(function(e){
+
+            // })
         }
 
 
@@ -109,7 +139,7 @@
             //alert(1);
         },
         initialize: function() {
-        	this.AppView = new app.AppView();
+            this.AppView = new app.AppView();
             Backbone.history.start();
         }
     })

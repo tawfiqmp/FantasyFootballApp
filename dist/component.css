@@ -287,7 +287,7 @@ p.dummy-text:nth-child(3) {
 	padding: 10px 0;
 	color: #ddd;
 	font-size: 1em;
-	font-family: 'Blokk', Arial, serif;
+	font-family: Arial;
 }
 
 .dummy-text:last-child {
