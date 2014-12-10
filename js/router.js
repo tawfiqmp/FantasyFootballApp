@@ -25,10 +25,9 @@
         getPlayers: function() {
             var self = this;
             return this.fetch().then(function(model) {
-                console.log(model.body.players);
+                console.log(model.body.players[350]);
                 return model.body.players;
             })
-            debugger;
         }
 
     });
@@ -36,11 +35,11 @@
     app.Players = Backbone.Collection.extend({
         model: app.Player,
 
-        findPlayer: function(pro_team) {
-                return _(this.models.filter.(function(c){
-                    return _.contains(pro_team, c.pro_team);
-                })));
-                debugger;
+        findPlayerByTeam: function(pro_team) {
+                return _(this.models.filter(function(c){
+                    console.log(c.get('[0].pro_team' == 'BUF'))
+                    return c.get('[0].pro_team') == 'BUF';
+                }));
         }
     })
 
@@ -61,7 +60,7 @@
                 this.get("api_key")
             ].join("");
         },
-        getSchedule: function() {
+        getGame: function() {
             var self = this;
             return this.fetch().then(function(data) {
                 console.log(data);
@@ -79,13 +78,13 @@
     app.PlayerView = Backbone.View.extend({
 
         initialize: function() {
-            this.model = new app.Game({
+            this.model = new app.Player({
 
             });
             this.render();
         },
         render: function() {
-            this.getnewPlayers();
+            this.getNewPlayers();
         },
         getNewPlayers: function() {
             var self = this;
@@ -119,13 +118,10 @@
 
             })
 
-            this.collection.findPlayer().then(function(data) {
+            this.collection.findPlayerByTeam().then(function(data) {
                     console.log(data);
                     return data;
                 })
-                // //this.collection.forEach(function(e){
-
-            // })
         }
 
 
