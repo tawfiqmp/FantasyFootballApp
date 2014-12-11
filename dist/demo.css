@@ -24,6 +24,7 @@ body {
 
 body.demo-2 {
 	background: #3498db;
+	background-image: url("/img/football.jpg");
 }
 
 .container {
@@ -50,6 +51,7 @@ a:hover, a:focus {
 	margin: 0;
 	font-weight: 300;
 	font-size: 2.6em;
+	color: #FF0000;
 }
 
 .codrops-header h1 span {
@@ -82,7 +84,7 @@ a:hover, a:focus {
 	padding: 0 1em;
 	text-decoration: none;
 	letter-spacing: 1px;
-}
+}zf
 
 .codrops-top span.right {
 	float: right;

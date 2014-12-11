@@ -37,8 +37,8 @@
 
         findPlayerByTeam: function(pro_team) {
                 return _(this.models.filter(function(c){
-                    console.log(c.get('[0].pro_team' == 'BUF'))
-                    return c.get('[0].pro_team') == 'BUF';
+                    console.log(c.get());
+                    return c.get();
                 }));
         }
     })
@@ -76,6 +76,16 @@
     })
 
     app.PlayerView = Backbone.View.extend({
+        el: $('#form'),
+
+        events: {
+            'change #teamFilter': 'filterTeamSelect'
+        },
+
+        filterTeamSelect: function(e){
+            var selectedValue = "SF";
+            $("#teamFilter option[value='" + selectValue + "']").attr("selected", "selected");
+        },
 
         initialize: function() {
             this.model = new app.Player({
@@ -114,14 +124,15 @@
         render: function() {
             var self = this;
 
-            this.collection = new app.Players({
+            
+            // this.collection = new app.Players({
 
-            })
+            // })
 
-            this.collection.findPlayerByTeam().then(function(data) {
-                    console.log(data);
-                    return data;
-                })
+            // this.collection.findPlayerByTeam().then(function(data) {
+            //         console.log(data);
+            //         return data;
+            //     })
         }
 
 
@@ -129,7 +140,9 @@
 
     app.Router = Backbone.Router.extend({
         routes: {
-            "*default": "login"
+            "search": "page2"
+            "*default": "page1"
+        
         },
         login: function() {
             //alert(1);

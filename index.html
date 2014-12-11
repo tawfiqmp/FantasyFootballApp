@@ -19,13 +19,14 @@
 <body class="demo-2">
     <div class="container">
         <header class="codrops-header">
-            <h1>Fantasy Football Elitist <span>Your one stop for fantasy football info!</span></h1>
+            <b><h1>Fantasy Football Elitist <span>Your one stop for fantasy football info!</span></h1></b>
             <nav class="codrops-demos">
             	<a href="/#">Home</a>
             	<a href="/#">About Us</a>
             	<a href="/search.html">Search Player</a>
                 <h3>Pick your NFL Team</h3>
-                <select>
+                <form id="form">
+                <select id="teamFilter">
                     <option value=""></option>
                     <option value="ARI">Arizona Cardinals</option>
                     <option value="ATL">Atlanta Falcons</option>
@@ -60,6 +61,7 @@
                     <option value="WAS">Washington Redskins</option>
                 </select>
                     <button class="findRoster" id="submit">Find Roster!</button>
+                   </form> 
             </nav>
         </header>
         <section class="grid3d horizontal" id="grid3d">
