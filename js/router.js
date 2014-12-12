@@ -8,24 +8,26 @@
             response_format: "json",
             sport: "football",
             version: "3.0",
-            pro_team: "SF",
+            pro_team: "BUF"
             //api_key: "480558CD-C3AE-45E2-82F9-32AC35CCD91E",
         },
         urlRoot: function() {
             return [
-                "/cbs/fantasy",
+                "/cbs/search",
                 "?version=",
                 this.get("version"),
                 "&SPORT=",
                 this.get("sport"),
                 "&response_format=",
-                this.get("response_format")
+                this.get("response_format"),
+                "&pro_team=",
+                this.get("pro_team")
             ].join("");
         },
         getPlayers: function() {
             var self = this;
             return this.fetch().then(function(model) {
-                console.log(model.body.players[350]);
+                console.log(model.body.players);
                 return model.body.players;
             })
         }
@@ -35,12 +37,14 @@
     app.Players = Backbone.Collection.extend({
         model: app.Player,
 
-        findPlayerByTeam: function(pro_team) {
-                return _(this.models.filter(function(c){
-                    console.log(c.get());
-                    return c.get();
-                }));
-        }
+        parse: function(response) {
+            return response.body.players
+        },
+
+
+        url: "http://api.cbssports.com/fantasy/players/search"
+
+
     })
 
     app.Game = Backbone.Model.extend({
@@ -76,63 +80,54 @@
     })
 
     app.PlayerView = Backbone.View.extend({
-        el: $('#form'),
+        template: "<div class='image'></div>",
 
         events: {
-            'change #teamFilter': 'filterTeamSelect'
-        },
-
-        filterTeamSelect: function(e){
-            var selectedValue = "SF";
-            $("#teamFilter option[value='" + selectValue + "']").attr("selected", "selected");
+            "change #form": "filterData"
         },
 
         initialize: function() {
             this.model = new app.Player({
-
+                pro_team: this.proTeam,
             });
-            this.render();
+            this.options = _.extend({}, {
+                $container: $('div.grid')
+            },
+        this.options.$container.append(this.el)
+        this.render();
         },
-        render: function() {
-            this.getNewPlayers();
-        },
-        getNewPlayers: function() {
-            var self = this;
-            this.model.getPlayers().then(function(data) {
-                console.log(data);
-                return data;
-            })
 
-        }
+        render: function() {
+            this.filterData();
+            this.el.innerHTML = _.template(this.template, this.options)
+
+        },
+
+        filterData: function(event) {
+            var self = this;
+            this.model.getPlayers().then(function(url){
+                self.el.querySelector('.image').innerHTML = "<img src=" + url.model.body.players.photo + ">";
+            });
+            this.proTeam = $("option:selected", event.target).val()
+        },
+
     })
 
     app.GameView + Backbone.View.extend({
+
 
     })
 
     app.AppView = Backbone.View.extend({
         el: document.querySelector('body'),
         initialize: function() {
-            this.render();
             this.PlayerView = new app.PlayerView();
         },
         events: {
-            "click a.findRoster": function(e) {
-                this.render(e);
-            }
         },
         render: function() {
             var self = this;
 
-            
-            // this.collection = new app.Players({
-
-            // })
-
-            // this.collection.findPlayerByTeam().then(function(data) {
-            //         console.log(data);
-            //         return data;
-            //     })
         }
 
 
@@ -140,9 +135,9 @@
 
     app.Router = Backbone.Router.extend({
         routes: {
-            "search": "page2"
+            //"search": "page2"
             "*default": "page1"
-        
+
         },
         login: function() {
             //alert(1);
@@ -153,6 +148,6 @@
         }
     })
 
-    var AppView = app.AppView;
+    var PlayerView = app.PlayerView;
 
 })(window, undefined);

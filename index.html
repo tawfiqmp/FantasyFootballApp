@@ -16,75 +16,75 @@
     <script src="js/modernizr.custom.js"></script>
 </head>
 
-<body class="demo-2">
+<body id="app" class="demo-2">
     <div class="container">
         <header class="codrops-header">
             <b><h1>Fantasy Football Elitist <span>Your one stop for fantasy football info!</span></h1></b>
             <nav class="codrops-demos">
-            	<a href="/#">Home</a>
-            	<a href="/about.html">About Us</a>
-            	<a href="/search.html">Search Player</a>
+                <a href="/#">Home</a>
+                <a href="/about.html">About Us</a>
+                <a href="/search.html">Search Player</a>
                 <h3>Pick your NFL Team</h3>
                 <form id="form">
-                <select id="teamFilter">
-                    <option value=""></option>
-                    <option value="ARI">Arizona Cardinals</option>
-                    <option value="ATL">Atlanta Falcons</option>
-                    <option value="BAL">Baltimore Ravens</option>
-                    <option value="CAR">Carolina Panthers</option>
-                    <option value="CHI">Chicago Bears</option>
-                    <option value="CIN">Cincinnati Bengals</option>
-                    <option value="CLE">Cleveland Browns</option>
-                    <option value="DAL">Dallas Cowboys</option>
-                    <option value="DEN">Denver Broncos</option>
-                    <option value="DET">Detroit Lions</option>
-                    <option value="GB">Green Bay Packers</option>
-                    <option value="HOU">Houston Texans</option>
-                    <option value="IND">Indianapolis Colts</option>
-                    <option value="JAX">Jacksonville Jaguars</option>
-                    <option value="KC">Kansas City Chiefs</option>
-                    <option value="MIA">Miami Dolphins</option>
-                    <option value="MIN">Minnesota Vikings</option>
-                    <option value="NE">New England Patriots</option>
-                    <option value="NO">New Orleans Saints</option>
-                    <option value="NYG">New York Giants</option>
-                    <option value="NYJ">New York Jets</option>
-                    <option value="OAK">Oakland Raiders</option>
-                    <option value="PHI">Philadelphia Eagles</option>
-                    <option value="PIT">Pittsburgh Steelers</option>
-                    <option value="SD">San Diego Chargers</option>
-                    <option value="SF">San Francisco 49ers</option>
-                    <option value="SEA">Seattle Seahawks</option>
-                    <option value="STL">St. Louis Rams</option>
-                    <option value="TB">Tampa Bay Buccaneers</option>
-                    <option value="TEN">Tennessee Titans</option>
-                    <option value="WAS">Washington Redskins</option>
-                </select>
+                    <select id="teamFilter">
+                        <option value=""></option>
+                        <option value="ARI">Arizona Cardinals</option>
+                        <option value="ATL">Atlanta Falcons</option>
+                        <option value="BAL">Baltimore Ravens</option>
+                        <option value="CAR">Carolina Panthers</option>
+                        <option value="CHI">Chicago Bears</option>
+                        <option value="CIN">Cincinnati Bengals</option>
+                        <option value="CLE">Cleveland Browns</option>
+                        <option value="DAL">Dallas Cowboys</option>
+                        <option value="DEN">Denver Broncos</option>
+                        <option value="DET">Detroit Lions</option>
+                        <option value="GB">Green Bay Packers</option>
+                        <option value="HOU">Houston Texans</option>
+                        <option value="IND">Indianapolis Colts</option>
+                        <option value="JAX">Jacksonville Jaguars</option>
+                        <option value="KC">Kansas City Chiefs</option>
+                        <option value="MIA">Miami Dolphins</option>
+                        <option value="MIN">Minnesota Vikings</option>
+                        <option value="NE">New England Patriots</option>
+                        <option value="NO">New Orleans Saints</option>
+                        <option value="NYG">New York Giants</option>
+                        <option value="NYJ">New York Jets</option>
+                        <option value="OAK">Oakland Raiders</option>
+                        <option value="PHI">Philadelphia Eagles</option>
+                        <option value="PIT">Pittsburgh Steelers</option>
+                        <option value="SD">San Diego Chargers</option>
+                        <option value="SF">San Francisco 49ers</option>
+                        <option value="SEA">Seattle Seahawks</option>
+                        <option value="STL">St. Louis Rams</option>
+                        <option value="TB">Tampa Bay Buccaneers</option>
+                        <option value="TEN">Tennessee Titans</option>
+                        <option value="WAS">Washington Redskins</option>
+                    </select>
                     <button class="findRoster" id="submit">Find Roster!</button>
-                   </form> 
+                </form>
             </nav>
         </header>
         <section class="grid3d horizontal" id="grid3d">
             <div class="grid-wrap">
                 <div class="grid">
-                    <figure><img src="img/4.jpg" alt="img04" />
-                    </figure>
-                    <figure><img src="img/3.jpg" alt="img03" />
-                    </figure>
-                    <figure><img src="img/1.jpg" alt="img01" />
-                    </figure>
-                    <figure><img src="img/5.jpg" alt="img05" />
-                    </figure>
-                    <figure><img src="img/2.jpg" alt="img02" />
-                    </figure>
-                    <figure><img src="img/8.jpg" alt="img08" />
-                    </figure>
-                    <figure><img src="img/9.jpg" alt="img09" />
-                    </figure>
-                    <figure><img src="img/6.jpg" alt="img06" />
-                    </figure>
-                    <figure><img src="img/7.jpg" alt="img07" />
-                    </figure>
+                            <figure><img src="{model.photo}" alt="img04" />
+                            </figure>
+                            <figure><img src="{model.photo}" alt="img03" />
+                            </figure>
+                            <figure><img src="{model.photo}" alt="img01" />
+                            </figure>
+                            <figure><img src="{model.photo}" alt="img05" />
+                            </figure>
+                            <figure><img src="{model.photo}" alt="img02" />
+                            </figure>
+                            <figure><img src="{model.photo}" alt="img08" />
+                            </figure>
+                            <figure><img src="{model.photo}" alt="img09" />
+                            </figure>
+                            <figure><img src="{model.photo}" alt="img06" />
+                            </figure>
+                            <figure><img src="{model.photo}" alt="img07" />
+                            </figure>
                 </div>
             </div>
             <!-- /grid-wrap -->
@@ -140,6 +140,7 @@
         </section>
     </div>
     <!-- /container -->
+    <script type="text/javascript" src="./bower_components/Loader/loader.js" id="loaderjs" data-app="./js/app.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/helper.js"></script>
     <script src="js/grid3d.js"></script>
